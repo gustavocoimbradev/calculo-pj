@@ -18,6 +18,7 @@ export default function Home() {
     .then(response => response.json())
     .then(data => {
       // setSalarioMinimo(data[0].salary);
+      console.log(data);
       const salarioMinimoTemp = 1518;
       setSalarioMinimo(salarioMinimoTemp);
       setCalculando(false);
