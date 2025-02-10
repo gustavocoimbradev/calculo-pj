@@ -13,19 +13,30 @@ export default function Home() {
   const [salarioMinimo, setSalarioMinimo] = useState<number | null>(null);  
 
   const realizarCalculo = () => {
+    
     setCalculando(true);
-    fetch('https://salario-minimo.onrender.com/')
-    .then(response => response.json())
-    .then(data => {
-      // setSalarioMinimo(data[0].salary);
-      console.log(data);
+
+    // API DESATUALIZADA
+    // fetch('https://salario-minimo.onrender.com/')
+    // .then(response => response.json())
+    // .then(data => {
+    //   setSalarioMinimo(data[0].salary);
+    //   setSalarioMinimo(data[0].salary);
+    //   setCalculando(false);
+    //   setCalculado(true);
+    //   setImposto((data[0].salary)*0.11+(rendimento?rendimento:0)*0.06);
+    // })
+    // .catch(error => console.error('Erro:', error));
+
+    // SOLUÇÃO TEMPORÁRIA
+    setTimeout(function(){
       const salarioMinimoTemp = 1518;
       setSalarioMinimo(salarioMinimoTemp);
       setCalculando(false);
       setCalculado(true);
       setImposto((salarioMinimoTemp)*0.11+(rendimento?rendimento:0)*0.06);
-    })
-    .catch(error => console.error('Erro:', error));
+    }, 1000);
+
   }
 
   const novoCalculo = () => {
