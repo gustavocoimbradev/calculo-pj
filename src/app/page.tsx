@@ -111,7 +111,7 @@ export default function Home() {
               </div>
             </div>
           )}
-          {!calculado?(
+          {!calculado?( 
             !calculando?(
               <div className="flex gap-2 w-full">
                 <button onClick={realizarCalculo} className="flex-1 py-3 px-4 bg-indigo-600 border-2 border-indigo-600 rounded-full text-white transition-all ease-in-out hover:bg-indigo-700 hover:text-white">
