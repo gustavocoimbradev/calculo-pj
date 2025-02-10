@@ -17,7 +17,8 @@ export default function Home() {
     fetch('https://salario-minimo.onrender.com/')
     .then(response => response.json())
     .then(data => {
-      setSalarioMinimo(data[0].salary);
+      // setSalarioMinimo(data[0].salary);
+      setSalarioMinimo(1518);
       setCalculando(false);
       setCalculado(true);
       setImposto((salarioMinimo?salarioMinimo:0)*0.11+(rendimento?rendimento:0)*0.06);
