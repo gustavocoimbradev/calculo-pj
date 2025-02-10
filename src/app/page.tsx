@@ -6,8 +6,8 @@ import { NumericFormat } from 'react-number-format';
 
 export default function Home() {
 
-  const [rendimento, setRendimento] = useState<any>(undefined);
-  const [imposto, setImposto] = useState<any>(undefined);
+  const [rendimento, setRendimento] = useState<number | null>(null);
+  const [imposto, setImposto] = useState<number | null>(null);  
   const [calculado, setCalculado] = useState<boolean>(false);
   const [calculando, setCalculando] = useState<boolean>(false);
 
