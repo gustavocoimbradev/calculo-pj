@@ -21,7 +21,7 @@ export default function Home() {
       setSalarioMinimo(1518);
       setCalculando(false);
       setCalculado(true);
-      setImposto((salarioMinimo?salarioMinimo:0)*0.11+(rendimento?rendimento:0)*0.06);
+      setImposto((1518)*0.11+(rendimento?rendimento:0)*0.06);
     })
     .catch(error => console.error('Erro:', error));
   }
