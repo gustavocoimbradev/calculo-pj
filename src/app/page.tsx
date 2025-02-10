@@ -107,7 +107,7 @@ export default function Home() {
                 allowNegative={false}
                 value={salarioMinimo}
                 displayType="text"
-              />. Este valor pode demorar um pouco para ser atualizado a depender de quando foi a sua última alteração.</small>
+              />.</small>
               </div>
             </div>
           )}
