@@ -18,10 +18,11 @@ export default function Home() {
     .then(response => response.json())
     .then(data => {
       // setSalarioMinimo(data[0].salary);
-      setSalarioMinimo(1518);
+      const salarioMinimoTemp = 1518;
+      setSalarioMinimo(salarioMinimoTemp);
       setCalculando(false);
       setCalculado(true);
-      setImposto((1518)*0.11+(rendimento?rendimento:0)*0.06);
+      setImposto((salarioMinimoTemp)*0.11+(rendimento?rendimento:0)*0.06);
     })
     .catch(error => console.error('Erro:', error));
   }
