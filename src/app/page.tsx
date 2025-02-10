@@ -10,16 +10,17 @@ export default function Home() {
   const [imposto, setImposto] = useState<number | null>(null);  
   const [calculado, setCalculado] = useState<boolean>(false);
   const [calculando, setCalculando] = useState<boolean>(false);
-
+  const [salarioMinimo, setSalarioMinimo] = useState<number | null>(null);  
 
   const realizarCalculo = () => {
     setCalculando(true);
     fetch('https://salario-minimo.onrender.com/')
     .then(response => response.json())
     .then(data => {
+      setSalarioMinimo(data[0].salary);
       setCalculando(false);
       setCalculado(true);
-      setImposto((data[0].salary)*0.11+(rendimento?rendimento:0)*0.06);
+      setImposto((salarioMinimo?salarioMinimo:0)*0.11+(rendimento?rendimento:0)*0.06);
     })
     .catch(error => console.error('Erro:', error));
   }
@@ -90,6 +91,20 @@ export default function Home() {
                   value={imposto}
                   displayType="text"
                 />
+              </div>
+              <div className="bg-white flex px-6 pb-6 ">
+                <small className="text-slate-600 text-center mx-auto block">* Cálculo realizado considerando o salário mínimo vigente (<NumericFormat
+                name="rendimento"
+                placeholder="0,00"
+                thousandSeparator="."
+                decimalSeparator=","
+                decimalScale={2}
+                fixedDecimalScale
+                prefix="R$ "
+                allowNegative={false}
+                value={salarioMinimo}
+                displayType="text"
+              />)</small>
               </div>
             </div>
           )}
