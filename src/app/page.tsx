@@ -19,7 +19,7 @@ export default function Home() {
     .then(data => {
       setCalculando(false);
       setCalculado(true);
-      setImposto((data[0].salary)*0.11+(rendimento)*0.06);
+      setImposto((data[0].salary)*0.11+(rendimento?rendimento:0)*0.06);
     })
     .catch(error => console.error('Erro:', error));
   }
@@ -102,7 +102,7 @@ export default function Home() {
               </div>
             ):(
               <div className="flex gap-2 w-full">
-                <button onClick={realizarCalculo} className="flex-1 py-3 px-4 bg-indigo-600 border-2 border-indigo-600 rounded-full text-white transition-all ease-in-out hover:bg-indigo-700 hover:text-white opacity-50 disabled" disabled>
+                <button onClick={realizarCalculo} className="flex-1 py-3 px-4 bg-indigo-600 border-2 border-indigo-600 rounded-full text-white transition-all ease-in-out hover:text-white opacity-50 disabled" disabled>
                   Verificando valor...
                 </button>
               </div>
