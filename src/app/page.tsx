@@ -93,7 +93,7 @@ export default function Home() {
                 />
               </div>
               <div className="bg-white flex px-6 pb-6 ">
-                <small className="text-slate-600 text-center mx-auto block">* Cálculo realizado considerando o salário mínimo vigente (<NumericFormat
+                <small className="text-slate-600 text-center mx-auto block">* Cálculo realizado considerando o salário mínimo de <NumericFormat
                 name="rendimento"
                 placeholder="0,00"
                 thousandSeparator="."
@@ -104,7 +104,7 @@ export default function Home() {
                 allowNegative={false}
                 value={salarioMinimo}
                 displayType="text"
-              />)</small>
+              />. Este valor pode demorar um pouco para ser atualizado a depender de quando foi a sua última alteração.</small>
               </div>
             </div>
           )}
