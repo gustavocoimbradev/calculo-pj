@@ -6,7 +6,9 @@ import { NumericFormat } from 'react-number-format';
 
 export default function Home() {
 
-  const [rendimento, setRendimento] = useState<number | null>(null);
+  const [aliquota, setAliquota] = useState<number | null>(null);
+  const [rendimentoMensal, setRendimentoMensal] = useState<number | null>(null);
+  const [rendimentoAnual, setRendimentoAnual] = useState<number | null>(null);
   const [imposto, setImposto] = useState<number | null>(null);  
   const [calculado, setCalculado] = useState<boolean>(false);
   const [calculando, setCalculando] = useState<boolean>(false);
@@ -16,46 +18,32 @@ export default function Home() {
     
     setCalculando(true);
 
-    // API DESATUALIZADA
-    // fetch('https://salario-minimo.onrender.com/')
-    // .then(response => response.json())
-    // .then(data => {
-    //   setSalarioMinimo(data[0].salary);
-    //   setSalarioMinimo(data[0].salary);
-    //   setCalculando(false);
-    //   setCalculado(true);
-    //   setImposto((data[0].salary)*0.11+(rendimento?rendimento:0)*0.06);
-    // })
-    // .catch(error => console.error('Erro:', error));
-
-    // SOLUÇÃO TEMPORÁRIA
     setTimeout(function(){
       const salarioMinimoTemp = 1518;
       setSalarioMinimo(salarioMinimoTemp);
       setCalculando(false);
       let aliquota;
-      const rendimentoMensal = rendimento?rendimento:0;
-      const rendimentoAnual = rendimentoMensal*12;
-      if (rendimentoAnual <= 180000) {
+      if ((rendimentoAnual??0) <= 180000) {
         aliquota = 0.0600; // 6,00%
-      } else if (rendimentoAnual <= 360000) {
+      } else if ((rendimentoAnual??0) <= 360000) {
         aliquota = 0.1120; // 11,20%
-      } else if (rendimentoAnual <= 720000) {
+      } else if ((rendimentoAnual??0) <= 720000) {
         aliquota = 0.1350; // 13,50%
-      } else if (rendimentoAnual <= 1800000) {
+      } else if ((rendimentoAnual??0) <= 1800000) {
         aliquota = 0.1600; // 16,00%
-      } else if (rendimentoAnual <= 3600000) {
+      } else if ((rendimentoAnual??0) <= 3600000) {
         aliquota = 0.2100; // 21,00%
-      } else if (rendimentoAnual <= 3600000) {
+      } else if ((rendimentoAnual??0) <= 3600000) {
         aliquota = 0.2100; // 21,00%
-      } else if (rendimentoAnual <= 4800000) {
+      } else if ((rendimentoAnual??0) <= 4800000) {
         aliquota = 0.3300; // 33,00%
       } else {
         aliquota = 0;
       }
       if (aliquota !== 0) {
+        setAliquota(aliquota);
         setCalculado(true);
-        setImposto((salarioMinimoTemp)*0.11+(rendimentoMensal)*aliquota);
+        setImposto((salarioMinimoTemp)*0.11+(rendimentoMensal?rendimentoMensal:0)*aliquota);
       } 
     }, 1000);
 
@@ -64,7 +52,7 @@ export default function Home() {
   const novoCalculo = () => {
     setCalculado(false);
     setImposto(0);
-    setRendimento(0);
+    setRendimentoMensal(0);
   }
 
   return (
@@ -91,8 +79,12 @@ export default function Home() {
                   decimalScale={2}
                   fixedDecimalScale
                   allowNegative={false}
-                  value={rendimento}
-                  onValueChange={(value) => setRendimento(value.floatValue ?? 0)} 
+                  value={rendimentoMensal}
+                  onValueChange={(value) => {
+                    const mensal = value.floatValue ?? 0;
+                    setRendimentoMensal(mensal);
+                    setRendimentoAnual(mensal * 12);
+                  }}
                 />
               </div>
             </div>
@@ -109,7 +101,7 @@ export default function Home() {
                 fixedDecimalScale
                 prefix="R$ "
                 allowNegative={false}
-                value={rendimento}
+                value={rendimentoMensal}
                 displayType="text"
               /> você terá que pagar</p>
               </div>
@@ -129,18 +121,40 @@ export default function Home() {
                 />
               </div>
               <div className="bg-white flex px-6 pb-6 ">
-                <small className="text-slate-600 text-center mx-auto block">* Cálculo realizado considerando o salário mínimo de <NumericFormat
-                name="rendimento"
-                placeholder="0,00"
-                thousandSeparator="."
-                decimalSeparator=","
-                decimalScale={2}
-                fixedDecimalScale
-                prefix="R$ "
-                allowNegative={false}
-                value={salarioMinimo}
-                displayType="text"
-              />.</small>
+                <small className="text-slate-600 text-center mx-auto flex flex-col items-center flex-1">
+                  <span className="font-bold block">Pró labore</span>
+                  <NumericFormat
+                    name="rendimento"
+                    placeholder="0,00"
+                    thousandSeparator="."
+                    decimalSeparator=","
+                    decimalScale={2}
+                    fixedDecimalScale
+                    prefix="R$ "
+                    allowNegative={false}
+                    value={salarioMinimo}
+                    displayType="text"
+                  />
+                </small>
+                <small className="text-slate-600 text-center mx-auto flex flex-col items-center flex-1">
+                  <span className="font-bold block">Rendimento anual</span>
+                  <NumericFormat
+                      name="rendimento"
+                      placeholder="0,00"
+                      thousandSeparator="."
+                      decimalSeparator=","
+                      decimalScale={2}
+                      fixedDecimalScale
+                      prefix="R$ "
+                      allowNegative={false}
+                      value={rendimentoAnual}
+                      displayType="text"
+                    />
+                </small>
+                <small className="text-slate-600 text-center mx-auto flex flex-col items-center flex-1">
+                  <span className="font-bold block">Alíquota aplicada</span>
+                  <span>{((aliquota ?? 0) * 100).toString().slice(0, ((aliquota ?? 0) * 100).toString().indexOf('.') + 3)} %</span>
+                </small>
               </div>
             </div>
           )}
