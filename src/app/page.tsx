@@ -33,8 +33,30 @@ export default function Home() {
       const salarioMinimoTemp = 1518;
       setSalarioMinimo(salarioMinimoTemp);
       setCalculando(false);
-      setCalculado(true);
-      setImposto((salarioMinimoTemp)*0.11+(rendimento?rendimento:0)*0.06);
+      let aliquota;
+      const rendimentoMensal = rendimento?rendimento:0;
+      const rendimentoAnual = rendimentoMensal*12;
+      if (rendimentoAnual <= 180000) {
+        aliquota = 0.0600; // 6,00%
+      } else if (rendimentoAnual <= 360000) {
+        aliquota = 0.1120; // 11,20%
+      } else if (rendimentoAnual <= 720000) {
+        aliquota = 0.1350; // 13,50%
+      } else if (rendimentoAnual <= 1800000) {
+        aliquota = 0.1600; // 16,00%
+      } else if (rendimentoAnual <= 3600000) {
+        aliquota = 0.2100; // 21,00%
+      } else if (rendimentoAnual <= 3600000) {
+        aliquota = 0.2100; // 21,00%
+      } else if (rendimentoAnual <= 4800000) {
+        aliquota = 0.3300; // 33,00%
+      } else {
+        aliquota = 0;
+      }
+      if (aliquota !== 0) {
+        setCalculado(true);
+        setImposto((salarioMinimoTemp)*0.11+(rendimentoMensal)*aliquota);
+      } 
     }, 1000);
 
   }
