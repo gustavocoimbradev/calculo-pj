@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+  # 📊 Cálculo PJ
 
-## Getting Started
+  O **Cálculo PJ** é uma ferramenta desenvolvida para auxiliar profissionais a estimarem o valor de impostos a pagar (Simples Nacional) com base em seu rendimento mensal. O projeto foca em entregar clareza financeira através de uma interface moderna e cálculos precisos.
 
-First, run the development server:
+  ---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+  ## 🚀 Demonstração
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  Calcule seus impostos online aqui:
+  👉 [https://calculo-pj.vercel.app/](https://calculo-pj.vercel.app/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+  ---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+  ## 💻 Como rodar localmente
 
-## Learn More
+  ### 📋 Pré-requisitos
+  - **Node.js**
+  - **NPM ou Yarn**
 
-To learn more about Next.js, take a look at the following resources:
+  ### 🛠️ Passo a passo
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  1. **Clone o repositório:**
+     ```bash
+     git clone https://github.com/gustavocoimbradev/calculo-pj.git
+     cd calculo-pj
+     ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+  2. **Instale as dependências:**
+     ```bash
+     npm install
+     ```
 
-## Deploy on Vercel
+  3. **Inicie o servidor de desenvolvimento:**
+     ```bash
+     npm run dev
+     ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  4. **Acesse:** `http://localhost:3000`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  ---
+
+  ## 🛠️ Tecnologias utilizadas
+
+  - **Framework:** [Next.js](https://nextjs.org/)
+  - **Linguagem:** TypeScript / JavaScript
+  - **Estilização:** [Tailwind CSS](https://tailwindcss.com)
+  - **Deployment:** [Vercel](https://vercel.com)
+
+  ---
+
+  ## 💡 Motivação técnica
+
+  Este projeto foi um exercício prático de:
+  - Implementação de regras de negócio complexas (cálculo de alíquotas e pró-labore).
+  - Gestão de estado reativo para atualização instantânea de resultados financeiros.
+  - Design de interface focado em legibilidade de dados e experiência do usuário (UX).
+
+  ---
+
+  ## 📝 Licença
+
+  Este projeto é um software de código aberto (open-source) licenciado sob a [MIT license](https://opensource.org/licenses/MIT).
