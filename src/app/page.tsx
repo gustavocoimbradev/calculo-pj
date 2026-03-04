@@ -19,7 +19,7 @@ export default function Home() {
     setCalculando(true);
 
     setTimeout(function(){
-      const salarioMinimoTemp = 1518;
+      const salarioMinimoTemp = 1621;
       setSalarioMinimo(salarioMinimoTemp);
       setCalculando(false);
       let aliquota;
